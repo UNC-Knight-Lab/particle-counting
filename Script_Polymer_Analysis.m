@@ -96,7 +96,7 @@ end
 majaxnm = majax./pixelsize;
 minaxnm = minax./pixelsize;
 
-measurement_file_nBA5_XTEN2_80C_1hr_2_nospaghet = sort(majaxnm)
+measurement_file_of_your_image = sort(majaxnm) % edit variable name to label measurement file of particle diameters 
 %% Plot each ellpise on the mask and on the original image
 
 
