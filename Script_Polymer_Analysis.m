@@ -1,5 +1,5 @@
 %% Pick images for input
-% go to line 99 and edit the variable for sort(majaxnm)
+% go to line 99 and edit the variable for sort(majaxnm) to label measurement file 
 
 maskdir = 'Mask of Edited Image.tif'; %this is the black and white mask
 cntmaskdir = 'Count Masks of Edited Image.tif'; %this is the countmask
