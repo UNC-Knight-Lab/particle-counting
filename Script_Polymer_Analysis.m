@@ -1,9 +1,10 @@
 %% Pick images for input
+% go to line 99 and edit the variable for sort(majaxnm)
 
-maskdir = 'Mask of EA5-XTEN2_17.tif'; %this is the black and white mask
-cntmaskdir = 'Count Masks of EA5-XTEN2_17.tif'; %this is the countmask
-rawim = 'EA5-XTEN2_17.tif'; %this is the raw image
-pixelsize = 6.48;
+maskdir = 'Mask of Edited Image.tif'; %this is the black and white mask
+cntmaskdir = 'Count Masks of Edited Image.tif'; %this is the countmask
+rawim = 'Raw Image.jpg'; %this is the raw image
+pixelsize = x; %pixel to nm size ratio determined from image 
 
 
 tmin = 1;
@@ -95,19 +96,7 @@ end
 majaxnm = majax./pixelsize;
 minaxnm = minax./pixelsize;
 
-EA_XTEN2_17_measurementfile = sort(majaxnm)
-%figure()
-%edges =[0:2:30]
-%histogram(majaxnm_1,edges)
-%hold on
-%histogram(minaxnm,edges)
-
-%writematrix(majaxnm,'major_axis_diameter_1014.txt','Delimiter','tab')
-%type 'major_axis_diameter.txt'
-
-%writematrix(minaxnm,'minor_axis_diameter_1014.txt','Delimiter','tab')
-%type 'minor_axis_diameter.txt'
-
+measurement_file_nBA5_XTEN2_80C_1hr_2_nospaghet = sort(majaxnm)
 %% Plot each ellpise on the mask and on the original image
 
 
@@ -142,47 +131,11 @@ for l = 1:length(measurements)
     y = Yc + a*cos(t)*sin(phi) + b*sin(t)*cos(phi);
     plot(x,y,'y','Linewidth',1)
 end
-
-%% %% Labeling Particle Counting with Original Image  
-
-%Converting the centroid coordinates into an X and Y vector 
-Xcd = centroidxy(:,1)
-Ycd = centroidxy(:,2)
-
-%Loading the original image and labeling particles 
-fig =figure;
-imagesc(preiminraw{1,1})
-hold on
-for ii = 1:length(Ycd)
-    text(Xcd(ii),Ycd(ii),num2str(ii),'Color','r')
-end
-plot(Xcd,Ycd,'o') 
-%% Making Histograms of Particle Measurements 
-
-h = histogram(majaxnm);
-%xlabel('Diameter (nm)')
-%ylabel('Frequency')
-
-counts = h.Values
-bincenters = h.BinEdges + h.BinWidth/2
-
-counts_column = counts.'
-bincenters_columns = bincenters.'
-
-Histogram_Table = table(bincenters_columns, counts_column)
-%writetable(h,'Hiram.txt','Delimiter','space')
-
-% Obtain the handle of the figure that contains the histogram
-handleOfHistogramFigure = ancestor(h, 'figure');
-% Make the figure window visible in case it was invisible before
-handleOfHistogramFigure.Visible  = 'on'
-% Bring the figure window to the front
-figure(handleOfHistogramFigure);
+%% Calculating pixel area of ellipse 
+MinMax = [[0.5*minax].*[0.5*majax]]*pi;
+Total_area = sum(MinMax);
 
 
-%% 
-edges =(1:2:30);
-g = figure();
-g1 = histogram(EA_XTEN2_17_measurementfile,edges);
-
+ 
+ 
 
