@@ -135,7 +135,14 @@ end
 MinMax = [[0.5*minax].*[0.5*majax]]*pi;
 Total_area = sum(MinMax);
 
-
+%% Generate a histogram to spotcheck particle measurements 
+figure();
+edges =[0:2:50];
+histogram(majaxnm,edges);
+% title('Insert Title Here');
+set(gca,'box','off');
+xlabel('Diameter (nm)');
+ylabel('Count');
  
  
 
